@@ -1,0 +1,28 @@
+export interface Vector2D {
+  x: number;
+  y: number;
+}
+
+export function vec(x: number, y: number): Vector2D {
+  return { x, y };
+}
+
+export function vecLength(v: Vector2D): number {
+  return Math.sqrt(v.x * v.x + v.y * v.y);
+}
+
+export function vecNormalize(v: Vector2D): Vector2D {
+  const len = vecLength(v);
+  if (len === 0) return { x: 0, y: 0 };
+  return { x: v.x / len, y: v.y / len };
+}
+
+export function vecDistance(a: Vector2D, b: Vector2D): number {
+  const dx = a.x - b.x;
+  const dy = a.y - b.y;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+export function vecDot(a: Vector2D, b: Vector2D): number {
+  return a.x * b.x + a.y * b.y;
+}
