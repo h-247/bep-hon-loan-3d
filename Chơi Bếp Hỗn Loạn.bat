@@ -1,12 +1,11 @@
 @echo off
-chcp 65001 > nul
-title Bếp Hỗn Loạn - Trò Chơi Nấu Ăn 3D
-cd /d "%~dp0"
+title Bep Hon Loan 3D
+cd /d "c:\Users\toanv\OneDrive\Desktop\Game 3"
 echo ========================================================
-echo    🍳 BẾP HỖN LOẠN - TRÒ CHƠI NẤU ĂN PHỐI HỢP 3D 🍳
+echo    BEP HON LOAN - TRO CHOI NAU AN PHOI HOP 3D
 echo ========================================================
 echo.
-echo Đang tìm cổng mạng khả dụng và khởi động trò chơi...
+echo Kiem tra cong mang kha dung va khoi dong tro choi...
 echo.
-node start_game.js
+node "c:\Users\toanv\OneDrive\Desktop\Game 3\start_game.js"
 pause

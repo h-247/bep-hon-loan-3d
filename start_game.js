@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const repoDir = path.dirname(__filename);
 
 // Function to find an unused port starting from preferredPort
 function findAvailablePort(startPort) {
@@ -27,26 +27,25 @@ function findAvailablePort(startPort) {
 }
 
 async function main() {
-  console.log('🔍 Đang kiểm tra cổng khả dụng (tránh các cổng đang được sử dụng)...');
+  console.log('🔍 Dang kiem tra cong mang kha dung...');
   const availablePort = await findAvailablePort(3000);
-  console.log(`✓ Tìm thấy cổng khả dụng: ${availablePort}`);
+  console.log(`✓ Tim thay cong kha dung: ${availablePort}`);
 
   const gameUrl = `http://localhost:${availablePort}`;
-  console.log(`🚀 Đang khởi động Bếp Hỗn Loạn tại: ${gameUrl}`);
+  console.log(`🚀 Khoi dong Bep Hon Loan 3D tai: ${gameUrl}`);
 
-  // Run dev server on the found unused port
   const isWindows = process.platform === 'win32';
   const npmCmd = isWindows ? 'npx.cmd' : 'npx';
 
   const child = spawn(npmCmd, ['vinext', 'dev', '--port', availablePort.toString()], {
-    cwd: __dirname,
+    cwd: repoDir,
     stdio: 'inherit',
     shell: true,
   });
 
-  // Open browser after 2 seconds
+  // Open browser after 2.5 seconds
   setTimeout(() => {
-    console.log(`🌐 Đang mở trình duyệt: ${gameUrl}`);
+    console.log(`🌐 Dang mo trinh duyet: ${gameUrl}`);
     if (isWindows) {
       exec(`start ${gameUrl}`);
     } else if (process.platform === 'darwin') {
@@ -54,7 +53,7 @@ async function main() {
     } else {
       exec(`xdg-open ${gameUrl}`);
     }
-  }, 2200);
+  }, 2500);
 
   child.on('exit', (code) => {
     process.exit(code || 0);
@@ -62,6 +61,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error('Lỗi khởi động:', err);
+  console.error('Loi khoi dong:', err);
   process.exit(1);
 });
